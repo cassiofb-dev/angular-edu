@@ -1,0 +1,132 @@
+<app-seo [options]="{
+  title: 'Angular and Bootstrap | Angular plus Bootstrap Template Driven Form',
+  description: 'Angular plus Bootstrap 5 Template Driven Form with bootstrap css classes validation'
+}"></app-seo>
+<form
+  class="row g-3 needs-validation"
+  novalidate
+  #f="ngForm"
+  (ngSubmit)="onSubmit(f)"
+  [ngClass]="{'was-validated': submitted}"
+>
+  <div class="col-md-4">
+    <label for="validationCustom01" class="form-label">First name</label>
+    <input
+    type="text"
+    class="form-control"
+    id="validationCustom01"
+    placeholder="Your firtst name"
+    required
+    name="firstname"
+    [(ngModel)]="formValues.firstname"
+  >
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Last name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="validationCustom02"
+      placeholder="Your last name"
+      required
+      [(ngModel)]="formValues.lastname"
+      name="lastname"
+    >
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustomUsername" class="form-label">Username</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustomUsername"
+        aria-describedby="inputGroupPrepend"
+        placeholder="Your username"
+        required
+        [(ngModel)]="formValues.username"
+        name="username"
+      >
+      <div class="invalid-feedback">
+        Please choose a username.
+      </div>
+    </div>
+  </div>
+  <div ngModelGroup="address" class="row m-0 p-0 mt-2">
+    <div class="col-md-6">
+      <label for="validationCustom03" class="form-label">City</label>
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom03"
+        placeholder="Your city"
+        required
+        [(ngModel)]="formValues.adress.city"
+        name="city"
+      >
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">State</label>
+      <select
+        class="form-select"
+        id="validationCustom04"
+        required
+        [(ngModel)]="formValues.adress.state"
+        name="state"
+      >
+        <option selected disabled value="">Choose a state</option>
+        <option *ngFor="let state of statesMock" [value]="state">{{state}}</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Zip</label>
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom05"
+        placeholder="Your zip code"
+        required
+        [(ngModel)]="formValues.adress.zip"
+        name="zip"
+      >
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="invalidCheck"
+        required
+        [(ngModel)]="formValues.agree"
+        name="agree"
+      >
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
+<app-form-debug [form]="f"></app-form-debug>
